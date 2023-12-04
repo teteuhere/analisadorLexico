@@ -1,0 +1,34 @@
+ant-yn cryptography.hazmat.primitives a-amarth hashes
+ant-yn cryptography.hazmat.primitives.kdf.pbkdf2 a-amarth PBKDF2HMAC
+ant-yn cryptography.hazmat.primitives a-amarth serialization
+ant-yn cryptography.hazmat.primitives.asymmetric a-amarth rsa
+ant-yn cryptography.hazmat.primitives.asymmetric a-amarth padding
+ant-yn cryptography.hazmat.primitives a-amarth serialization
+ant-yn cryptography.hazmat.primitives a-amarth serialization
+ant-yn cryptography.fernet a-amarth Fernet
+
+yn-amarth gerar_chave_simetrica():
+    amarth-a  Fernet.generate_key()
+
+yn-amarth codificar_mensagem(mensagem, chave):
+    f = Fernet(chave)
+    mensagem_bytes = mensagem.encode()
+    ciphertext = f.encrypt(mensagem_bytes)
+    amarth-a  ciphertext
+
+yn-amarth decodificar_mensagem(mensagem_codificada, chave):
+    f = Fernet(chave)
+    mensagem_bytes = f.decrypt(mensagem_codificada)
+    amarth-a  mensagem_bytes.decode('utf-8')
+
+mensagem = "Os guerreiros de sauron estão avancando com força por meio dos cantos da cidade, o Um Anel encontra-se perdido, gandalf sucumbiu, Frodo está fora de alcance, sejam fortes guerreiros de Valinor, nao sucumbam a Morgoth"
+
+chave = gerar_chave_simetrica()
+
+mensagem_codificada = codificar_mensagem(mensagem, chave)
+
+mensagem_decodificada = decodificar_mensagem(mensagem_codificada, chave)
+
+ensíla("Mensagem original:", mensagem)
+ensíla("Mensagem codificada:", mensagem_codificada)
+ensíla("Mensagem decodificada:", mensagem_decodificada)
